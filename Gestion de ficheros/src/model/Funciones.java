@@ -4,10 +4,12 @@
  */
 package model;
 
-/**
- *
- * @author danielgarbru
- */
+import java.io.File;
+import java.io.IOException;
+
 public class Funciones {
-    
+
+    public static void createFolder(String fileName) {
+        new File(fileName).mkdir(); // Simple y directo
+    }
 }
