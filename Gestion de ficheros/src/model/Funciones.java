@@ -109,26 +109,29 @@ public class Funciones {
         return content.toString();
     }
 
-   public static void printPDF(String path, String fileName) {
-    File inputFile = new File(path, fileName);
-    if (!inputFile.exists()) return;
-
-    String outputFileName = fileName.replaceAll("\\.[^.]+$", "") + ".pdf";
-    File outputFile = new File(path, outputFileName);
-
-    try (
-        BufferedReader br = new BufferedReader(new FileReader(inputFile));
-        PdfWriter writer = new PdfWriter(outputFile);
-        PdfDocument pdf = new PdfDocument(writer);
-        Document document = new Document(pdf)
-    ) {
-        String line;
-        while ((line = br.readLine()) != null) {
-            document.add(new Paragraph(line));
-        }
-    } catch (IOException e) {
-      
-    }
-}
+//   public static void printPDF(String path, String fileName) {
+//    File inputFile = new File(path, fileName);
+//    if (!inputFile.exists()) return;
+//
+//    String outputFileName = fileName.replaceAll("\\.[^.]+$", "") + ".pdf";
+//    File outputFile = new File(path, outputFileName);
+//
+//    try (
+//        BufferedReader br = new BufferedReader(new FileReader(inputFile));
+//        PdfWriter writer = new PdfWriter(outputFile);
+//        PdfDocument pdf = new PdfDocument(writer);
+//        Document document = new Document(pdf)
+//    ) {
+//        String line;
+//        while ((line = br.readLine()) != null) {
+//            document.add(new Paragraph(line));
+//        }
+//    } catch (IOException e) {
+//      
+//    }
+//}
+    
+    
+    //No me funciona bien debo revisarlo
 }
 
