@@ -5,104 +5,130 @@
 package model;
 
 import java.io.*;
-import java.util.Scanner;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 
 public class Funciones {
 
-    // 1. Crear carpeta
-    public static void createFolder(String folderName) {
-        File folder = new File(folderName);
+    public static void createFolder(String fileName) {
+        File folder = new File(fileName);
         if (!folder.exists()) {
-            folder.mkdir();
+            folder.mkdirs();
         }
     }
 
-    // 2. Crear o añadir contenido a archivo
     public static void createFile(String path, String fileName, String content) throws IOException {
         File file = new File(path, fileName);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-            writer.write(content);
-            writer.newLine();
-        }
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+        bw.write(content);
+        bw.newLine();
+        bw.close();
     }
 
-    // 3. Listar archivos
     public static String[] showListFiles(String path) {
         File folder = new File(path);
-        return folder.list();
+        if (folder.exists() && folder.isDirectory()) {
+            return folder.list();
+        }
+        return null;
     }
 
-    // 4. Mostrar contenido del archivo
     public static String showFile(String path, String fileName) throws IOException {
         File file = new File(path, fileName);
-        StringBuilder content = new StringBuilder();
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNextLine()) {
-                content.append(sc.nextLine()).append("\n");
-            }
+        if (!file.exists()) return "";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            sb.append(line).append("\n");
         }
-        return content.toString();
+        br.close();
+        return sb.toString();
     }
 
-    // 5. Sobrescribir archivo
     public static boolean overWriteFile(String path, String fileName, String newContent) throws IOException {
         File file = new File(path, fileName);
         if (!file.exists()) return false;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
-            writer.write(newContent);
-        }
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        bw.write(newContent);
+        bw.close();
         return true;
     }
 
-    // 6. Borrar archivo
     public static void deleteFile(String path, String fileName) {
         File file = new File(path, fileName);
-        file.delete();
+        if (file.exists()) {
+            file.delete();
+        }
     }
 
-    // 7. Contar caracteres
     public static int countChars(String path, String fileName) throws IOException {
         File file = new File(path, fileName);
+        if (!file.exists()) return -1;
+        BufferedReader br = new BufferedReader(new FileReader(file));
         int count = 0;
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNextLine()) {
-                count += sc.nextLine().length();
-            }
+        int c;
+        while ((c = br.read()) != -1) {
+            count++;
         }
+        br.close();
         return count;
     }
 
-    // 8. Contar palabras
     public static int countWords(String path, String fileName) throws IOException {
         File file = new File(path, fileName);
+        if (!file.exists()) return -1;
+        BufferedReader br = new BufferedReader(new FileReader(file));
         int count = 0;
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNext()) {
-                sc.next();
-                count++;
-            }
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] words = line.trim().split("\\s+");
+            if (!line.isBlank()) count += words.length;
         }
+        br.close();
         return count;
     }
 
-    // 9. Reemplazar palabras
     public static String swapWords(String path, String fileName, String oldWord, String newWord) throws IOException {
         File file = new File(path, fileName);
+        if (!file.exists()) return "";
+        BufferedReader br = new BufferedReader(new FileReader(file));
         StringBuilder content = new StringBuilder();
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine().replace(oldWord, newWord);
-                content.append(line).append("\n");
-            }
+        String line;
+        while ((line = br.readLine()) != null) {
+            content.append(line.replace(oldWord, newWord)).append("\n");
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(content.toString());
-        }
+        br.close();
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        bw.write(content.toString());
+        bw.close();
+
         return content.toString();
     }
 
-    // 10. Crear PDF (se deja vacío o como tarea si no se usa iText o PDFBox)
-    public static void printPDF(String path, String fileName) {
-        // Requiere librería externa como iText o Apache PDFBox (no obligatorio aquí)
+   public static void printPDF(String path, String fileName) {
+    File inputFile = new File(path, fileName);
+    if (!inputFile.exists()) return;
+
+    String outputFileName = fileName.replaceAll("\\.[^.]+$", "") + ".pdf";
+    File outputFile = new File(path, outputFileName);
+
+    try (
+        BufferedReader br = new BufferedReader(new FileReader(inputFile));
+        PdfWriter writer = new PdfWriter(outputFile);
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf)
+    ) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            document.add(new Paragraph(line));
+        }
+    } catch (IOException e) {
+      
     }
 }
+}
+
