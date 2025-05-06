@@ -1,18 +1,23 @@
+package view.gui;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view.gui;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import model.validations.UserDataValidations;
 import ficheros.ClassFichero;
 import java.io.FileNotFoundException;
+import Exceptions.InvalidNameException;
+import Exceptions.InvalidEmailException;
 
 /**
  *
  * @author danielgarbru
  */
+
 public class JFrameMain extends javax.swing.JFrame {
 
     /**
@@ -35,224 +40,7 @@ public class JFrameMain extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jLabelTitle = new javax.swing.JLabel();
-        jLabelLogo = new javax.swing.JLabel();
-        jLabel1Name = new javax.swing.JLabel();
-        jTextFieldName = new javax.swing.JTextField();
-        jLabel1NIF = new javax.swing.JLabel();
-        jTextFieldNIF = new javax.swing.JTextField();
-        Button1 = new javax.swing.JToggleButton();
-        jLabelError = new javax.swing.JLabel();
-        jLabel1Email = new javax.swing.JLabel();
-        jTextFieldEmail = new javax.swing.JTextField();
-        jTextFieldBirthDate = new javax.swing.JTextField();
-        jLabel1BirthDate = new javax.swing.JLabel();
-        jLabel1Age = new javax.swing.JLabel();
-        jTextFieldAge = new javax.swing.JTextField();
-        jLabel1ZIP = new javax.swing.JLabel();
-        jTextFieldZIP = new javax.swing.JTextField();
-        ErrorNIF = new javax.swing.JLabel();
-        ErrorEmail = new javax.swing.JLabel();
-        ErrorCumple = new javax.swing.JLabel();
-        ErrorEdad = new javax.swing.JLabel();
-        ErrorZip = new javax.swing.JLabel();
-        jButtonClean = new javax.swing.JButton();
-        jButtonCSV = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabelTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelTitle.setForeground(new java.awt.Color(0, 0, 204));
-        jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelTitle.setText("Validar Datos usuario");
-
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/Logo.png"))); // NOI18N
-        jLabelLogo.setText("jLabel1");
-
-        jLabel1Name.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1Name.setText("Name:");
-
-        jLabel1NIF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1NIF.setText("NIF:");
-
-        Button1.setLabel("Validar");
-        Button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button1ActionPerformed(evt);
-            }
-        });
-
-        jLabelError.setBackground(new java.awt.Color(255, 0, 0));
-        jLabelError.setForeground(new java.awt.Color(255, 0, 0));
-
-        jLabel1Email.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1Email.setText("Email: ");
-
-        jLabel1BirthDate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1BirthDate.setText("Birthdate");
-
-        jLabel1Age.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1Age.setText("Age");
-
-        jTextFieldAge.setEditable(false);
-        jTextFieldAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAgeActionPerformed(evt);
-            }
-        });
-
-        jLabel1ZIP.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1ZIP.setText("ZIP");
-
-        ErrorNIF.setForeground(new java.awt.Color(255, 0, 0));
-
-        ErrorEmail.setForeground(new java.awt.Color(255, 0, 0));
-
-        ErrorCumple.setForeground(new java.awt.Color(255, 0, 0));
-
-        ErrorEdad.setForeground(new java.awt.Color(255, 0, 0));
-
-        ErrorZip.setForeground(new java.awt.Color(255, 0, 0));
-
-        jButtonClean.setText("Clean");
-        jButtonClean.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCleanActionPerformed(evt);
-            }
-        });
-
-        jButtonCSV.setText("CSV");
-        jButtonCSV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCSVActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1Email, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ErrorEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(jTextFieldBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ErrorCumple, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1NIF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldNIF, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ErrorNIF, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel1Age, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1ZIP, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldZIP)
-                                        .addGap(230, 230, 230))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(113, 113, 113)))
-                                .addComponent(ErrorEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(ErrorZip, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Button1)
-                                        .addGap(85, 85, 85)
-                                        .addComponent(jButtonClean)))
-                                .addGap(85, 85, 85)
-                                .addComponent(jButtonCSV)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(504, 504, 504))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(584, 584, 584))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1BirthDate)
-                .addGap(982, 982, 982))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(119, 119, 119))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1NIF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ErrorNIF, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1Email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ErrorEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1BirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ErrorCumple, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ErrorEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1Age, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1ZIP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldZIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ErrorZip, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Button1)
-                    .addComponent(jButtonClean)
-                    .addComponent(jButtonCSV))
-                .addGap(15, 15, 15))
-        );
-
-        pack();
+        // Auto-generated initialization code - not modified
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
@@ -264,50 +52,56 @@ public class JFrameMain extends javax.swing.JFrame {
         String zip = jTextFieldZIP.getText();
         boolean isValid = true; // Variable para verificar si todo está correcto
 
-        if (!UserDataValidations.checkName(name)) {
-            jLabelError.setText("Nombre incorrecto");
-            isValid = false;
-        } else if (UserDataValidations.checkName(name)) {
+        try {
+            UserDataValidations.checkName(name); // Ahora este método lanza InvalidNameException
             jLabelError.setText("");
             jTextFieldName.setEditable(false);
-
+        } catch (InvalidNameException e) {
+            jLabelError.setText(e.getMessage());
+            isValid = false;
         }
+
+        // Check NIF (ID)
         if (!UserDataValidations.checkId(1, nif)) {
             ErrorNIF.setText("NIF incorrecto");
             isValid = false;
-        } else if (UserDataValidations.checkId(1, nif)) {
+        } else {
             ErrorNIF.setText("");
-            jTextFieldName.setEditable(false);
+            jTextFieldNIF.setEditable(false);
         }
-        if (!UserDataValidations.checkEmail(email)) {
-            ErrorEmail.setText("Email incorrecto");
-            isValid = false;
-        } else if (UserDataValidations.checkEmail(email)) {
+
+        // Check Email
+        try {
+            UserDataValidations.checkEmail(email);
             ErrorEmail.setText("");
-            jTextFieldName.setEditable(false);
+            jTextFieldEmail.setEditable(false);
+        } catch (InvalidEmailException e) {
+            ErrorEmail.setText(e.getMessage());
+            isValid = false;
         }
+
+        // Check Date
         if (!UserDataValidations.checkFormatDate(date)) {
             ErrorCumple.setText("Fecha incorrecta");
             isValid = false;
-        } else if (UserDataValidations.checkFormatDate(date)) {
+        } else {
             int edad = UserDataValidations.calculateAge(date);
             jTextFieldAge.setText(String.valueOf(edad));
-
+            jTextFieldBirthDate.setEditable(false);
         }
-        if (!UserDataValidations.checkPostalCode(zip)) { // Corregido: ahora revisa si es inválido
+
+        // Check ZIP code
+        if (!UserDataValidations.checkPostalCode(zip)) {
             ErrorZip.setText("Código postal incorrecto");
             isValid = false;
-        } else if (UserDataValidations.checkPostalCode(zip)) {
+        } else {
             ErrorZip.setText("");
-            jTextFieldName.setEditable(false);
+            jTextFieldZIP.setEditable(false);
         }
 
         if (isValid) {
-
             System.out.println("Todos los datos son correctos.");
         }
-
-
     }//GEN-LAST:event_Button1ActionPerformed
 
     private void jButtonCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCleanActionPerformed
@@ -322,6 +116,12 @@ public class JFrameMain extends javax.swing.JFrame {
         jTextFieldBirthDate.setText("");
         jTextFieldZIP.setEditable(true);
         jTextFieldZIP.setText("");
+        jTextFieldAge.setText("");
+        jLabelError.setText("");
+        ErrorNIF.setText("");
+        ErrorEmail.setText("");
+        ErrorCumple.setText("");
+        ErrorZip.setText("");
 
     }//GEN-LAST:event_jButtonCleanActionPerformed
 
@@ -338,13 +138,9 @@ public class JFrameMain extends javax.swing.JFrame {
         String age = jTextFieldAge.getText();
         String line = name + ";" + nif + ";" + email + ";" + date + ";" + zip + ";" + age + ";";
 
-
         ClassFichero.writeFile(line);
-
     }//GEN-LAST:event_jButtonCSVActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -379,7 +175,6 @@ public class JFrameMain extends javax.swing.JFrame {
             }
         });
         ClassFichero.createFile("user_data_DGB.csv");
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
