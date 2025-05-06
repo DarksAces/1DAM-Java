@@ -3,8 +3,6 @@ package model.validations;
 import java.util.Scanner;
 // Ejerciocio 3 imports
 import java.time.LocalDate;
-import Exceptions.InvalidEmailException;
-import Exceptions.InvalidNameException;
 
 /**
  * Validaciones de datos del usuario
@@ -326,34 +324,37 @@ public class UserDataValidations {
         return alphabeticOk;
     }
 
-    // Método modificado para lanzar excepción en lugar de retornar boolean
-    public static void checkEmail(String email) throws InvalidEmailException {
+    public static boolean checkEmail(String email) {
+        boolean emailOk = false;
+        String[] noArroba = email.split("@");
+        String[] despuesPunto = email.split("\\.");
         String[] partesArroba = email.split("@");
         if (partesArroba.length != 2 || partesArroba[0].isEmpty() || partesArroba[1].isEmpty()) {
-            throw new InvalidEmailException("El email debe contener exactamente un símbolo @ con texto antes y después");
+
+            return emailOk;
+        } else if ((noArroba.length == 2) && (despuesPunto.length == 2)) {
+            return true;
+        } else {
+
+            return emailOk;
         }
-        
-        String[] despuesPunto = partesArroba[1].split("\\.");
-        if (despuesPunto.length < 2 || despuesPunto[despuesPunto.length-1].isEmpty()) {
-            throw new InvalidEmailException("El dominio del email debe contener al menos un punto con texto después");
-        }
-        
-        System.out.println("Email válido");
     }
 
-    // Método modificado para lanzar excepción en lugar de retornar boolean
-    public static void checkName(String name) throws InvalidNameException {
-        if (name.length() <= 1 || name.length() > 20) {
-            throw new InvalidNameException("El nombre debe tener entre 2 y 20 caracteres");
+    public static boolean checkName(String name) {
+        boolean nameOk = false;
+        if ((name.length() <= 1) || (name.length() > 20)) {
+            return nameOk;
+
         }
 
         for (char comprobante : name.toCharArray()) {
             if (!Character.isAlphabetic(comprobante)) {
-                throw new InvalidNameException("El nombre solo debe contener caracteres alfabéticos");
+                return nameOk;
+
             }
         }
-        
-        System.out.println("Nombre válido");
+
+        return true;
     }
 
     //Esto del ejercicio 2   

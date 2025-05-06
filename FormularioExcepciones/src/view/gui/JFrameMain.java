@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view.gui;
+
+import Exceptions.InvalidNameException;
+import Exceptions.InvalidEmailException;
 import java.io.FileWriter;
 import java.io.IOException;
 import model.validations.UserDataValidations;
@@ -263,15 +266,20 @@ public class JFrameMain extends javax.swing.JFrame {
         String date = jTextFieldBirthDate.getText();
         String zip = jTextFieldZIP.getText();
         boolean isValid = true; // Variable para verificar si todo está correcto
+        try {
 
-        if (!UserDataValidations.checkName(name)) {
-            jLabelError.setText("Nombre incorrecto");
-            isValid = false;
-        } else if (UserDataValidations.checkName(name)) {
+            if (!UserDataValidations.checkName(name)) {
+                throw new InvalidNameException("Nombre incorrecto");
+            }
+
             jLabelError.setText("");
             jTextFieldName.setEditable(false);
+        } catch (InvalidNameException e) {
+            jLabelError.setText(e.getMessage());
+            isValid = false;
 
         }
+
         if (!UserDataValidations.checkId(1, nif)) {
             ErrorNIF.setText("NIF incorrecto");
             isValid = false;
@@ -279,13 +287,20 @@ public class JFrameMain extends javax.swing.JFrame {
             ErrorNIF.setText("");
             jTextFieldName.setEditable(false);
         }
-        if (!UserDataValidations.checkEmail(email)) {
-            ErrorEmail.setText("Email incorrecto");
+        try {
+            if (!UserDataValidations.checkEmail(email)) {
+                throw new InvalidEmailException("Email incorrecto");
+            }
+        } catch (InvalidEmailException e) {
+            jLabelError.setText(e.getMessage());
             isValid = false;
-        } else if (UserDataValidations.checkEmail(email)) {
-            ErrorEmail.setText("");
-            jTextFieldName.setEditable(false);
         }
+        jLabelError.setText("");
+        jTextFieldName.setEditable(false);
+
+        ErrorEmail.setText("Email incorrecto");
+        isValid = false;
+
         if (!UserDataValidations.checkFormatDate(date)) {
             ErrorCumple.setText("Fecha incorrecta");
             isValid = false;
@@ -294,6 +309,7 @@ public class JFrameMain extends javax.swing.JFrame {
             jTextFieldAge.setText(String.valueOf(edad));
 
         }
+
         if (!UserDataValidations.checkPostalCode(zip)) { // Corregido: ahora revisa si es inválido
             ErrorZip.setText("Código postal incorrecto");
             isValid = false;
@@ -338,13 +354,10 @@ public class JFrameMain extends javax.swing.JFrame {
         String age = jTextFieldAge.getText();
         String line = name + ";" + nif + ";" + email + ";" + date + ";" + zip + ";" + age + ";";
 
-
         ClassFichero.writeFile(line);
 
     }//GEN-LAST:event_jButtonCSVActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -379,7 +392,7 @@ public class JFrameMain extends javax.swing.JFrame {
             }
         });
         ClassFichero.createFile("user_data_DGB.csv");
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
