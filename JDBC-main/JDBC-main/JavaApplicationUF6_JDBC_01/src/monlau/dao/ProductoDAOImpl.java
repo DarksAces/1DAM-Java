@@ -12,7 +12,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 
     // Constantes de conexión
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/inventario?useSSL=false&serverTimezone=UTC";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/practica_jdbc?useSSL=false&serverTimezone=UTC";
     private static final String DB_USR = "root";
     private static final String DB_PWD = "";
     
