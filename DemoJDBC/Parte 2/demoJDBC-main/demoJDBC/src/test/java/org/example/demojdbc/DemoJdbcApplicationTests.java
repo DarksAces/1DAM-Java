@@ -1,8 +1,7 @@
 package org.example.demojdbc;
 
-import jakarta.transaction.Transactional;
-import org.example.demojdbc.model.Persona;
-import org.example.demojdbc.repository.PersonaRepository;
+import org.example.demojdbc.model.Producto;
+import org.example.demojdbc.repository.ProductoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,25 +17,22 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class DemoJdbcApplicationTests {
 
     @Autowired
-    PersonaRepository repositorio;
+    ProductoRepository repositorio;
 
     @Test
     void borrarTodos() {
         repositorio.borrarTodos();
-        List<Persona> lista = repositorio.buscarTodos();
+        List<Producto> lista = repositorio.buscarTodos();
         assertEquals(0, lista.size());
     }
 
     @Test
-    void insertarPersona() {
-        // Insertamos personas
-        Persona persona1 = new Persona("Pepe", "Gonzalez", 30);
-        repositorio.insertar(persona1);
-        Persona persona2 = new Persona("Juan", "Martinez", 28);
-        repositorio.insertar(persona2);
-
-        // Verificamos si las personas fueron insertadas correctamente
-        List<Persona> lista = repositorio.buscarTodos();
+    void insertarProducto() {
+        Producto producto1 = new Producto("Pepe", 30.0);
+        repositorio.insertar(producto1);
+        Producto producto2 = new Producto("Juan", 28.0);
+        repositorio.insertar(producto2);
+        List<Producto> lista = repositorio.buscarTodos();
         assertEquals(2, lista.size());
         assertNotNull(repositorio.buscarUno("Pepe"));
         assertNotNull(repositorio.buscarUno("Juan"));
@@ -44,26 +40,24 @@ class DemoJdbcApplicationTests {
 
     @Test
     void buscarTodos() {
-        List<Persona> lista = repositorio.buscarTodos();
+        List<Producto> lista = repositorio.buscarTodos();
         assertEquals(2, lista.size());
     }
 
     @Test
-    void borrarPersona() {
-        Persona persona = new Persona("Pepe");
-        repositorio.borrar(persona);
+    void borrarProducto() {
+        Producto producto = new Producto("Pepe");
+        repositorio.borrar(producto);
 
-        // Verificamos que el tamaño de la lista se haya reducido
-        List<Persona> lista = repositorio.buscarTodos();
+        List<Producto> lista = repositorio.buscarTodos();
         assertEquals(1, lista.size());
         assertNotNull(repositorio.buscarUno("Juan"));
     }
 
     @Test
     void buscarUno() {
-        Persona persona = repositorio.buscarUno("Juan");
-        assertNotNull(persona);
-        assertEquals("Juan", persona.getNombre());
+        Producto producto = repositorio.buscarUno("Juan");
+        assertNotNull(producto);
+        assertEquals("Juan", producto.getNombre());
     }
-
 }
